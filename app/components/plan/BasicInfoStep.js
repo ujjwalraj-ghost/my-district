@@ -58,7 +58,7 @@ export default function BasicInfoStep({ formData, onNext }) {
               placeholder="18 (6 PM in 24-hour format)"
               value={localData.startTime}
               onChange={(e) => setLocalData(prev => ({ ...prev, startTime: e.target.value }))}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-purple-300 font-semibold ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold ${
                 errors.startTime ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -76,7 +76,7 @@ export default function BasicInfoStep({ formData, onNext }) {
               placeholder="5000"
               value={localData.budget}
               onChange={(e) => setLocalData(prev => ({ ...prev, budget: e.target.value }))}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-purple-300 font-semibold ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold ${
                 errors.budget ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -94,7 +94,7 @@ export default function BasicInfoStep({ formData, onNext }) {
               placeholder="2"
               value={localData.numberOfPeople}
               onChange={(e) => setLocalData(prev => ({ ...prev, numberOfPeople: e.target.value }))}
-              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-purple-300 font-semibold ${
+              className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold ${
                 errors.numberOfPeople ? 'border-red-500' : 'border-gray-300'
               }`}
             />
@@ -116,7 +116,7 @@ export default function BasicInfoStep({ formData, onNext }) {
                   ...prev,
                   startLocation: { ...prev.startLocation, lat: e.target.value }
                 }))}
-                className={`px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-purple-300 font-semibold ${
+                className={`px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold ${
                   errors.startLocation ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -129,7 +129,7 @@ export default function BasicInfoStep({ formData, onNext }) {
                   ...prev,
                   startLocation: { ...prev.startLocation, lng: e.target.value }
                 }))}
-                className={`px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-purple-300 font-semibold ${
+                className={`px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold ${
                   errors.startLocation ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -147,17 +147,17 @@ export default function BasicInfoStep({ formData, onNext }) {
           <button
             type="button"
             onClick={() => setShowOptional(!showOptional)}
-            className="flex items-center justify-between w-full px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+            className="flex items-center justify-between w-full px-4 py-3 bg-[#FF9933] hover:bg-[#e68a29] rounded-lg transition-colors"
           >
-            <span className="font-medium text-gray-700">Configure More Options</span>
-            {showOptional ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+            <span className="font-bold text-black">Configure More Options</span>
+            {showOptional ? <ChevronUp className="w-5 h-5 text-black" /> : <ChevronDown className="w-5 h-5 text-black" />}
           </button>
 
           {showOptional && (
-            <div className="mt-4 space-y-4 p-4 bg-gray-50 rounded-lg">
+            <div className="mt-4 space-y-4 p-4 rounded-lg bg-gradient-to-br from-gray-800 to-black">
               {/* End Time */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
                   End Time (Optional)
                 </label>
                 <input
@@ -167,13 +167,13 @@ export default function BasicInfoStep({ formData, onNext }) {
                   placeholder="22 (10 PM in 24-hour format)"
                   value={localData.endTime}
                   onChange={(e) => setLocalData(prev => ({ ...prev, endTime: e.target.value }))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold bg-transparent"
                 />
               </div>
 
               {/* End Location */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
                   End Location (Optional)
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -186,7 +186,7 @@ export default function BasicInfoStep({ formData, onNext }) {
                       ...prev,
                       endLocation: { ...prev.endLocation, lat: e.target.value }
                     }))}
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
+                    className="px-4 py-3 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold bg-transparent"
                   />
                   <input
                     type="number"
@@ -197,14 +197,14 @@ export default function BasicInfoStep({ formData, onNext }) {
                       ...prev,
                       endLocation: { ...prev.endLocation, lng: e.target.value }
                     }))}
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-gray-900"
+                    className="px-4 py-3 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-[#F5F5F7] font-semibold bg-transparent"
                   />
                 </div>
               </div>
 
               {/* Extra Info */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
                   Additional Preferences (Optional)
                 </label>
                 <textarea
@@ -212,13 +212,13 @@ export default function BasicInfoStep({ formData, onNext }) {
                   placeholder="E.g., romantic evening, good ambience, live music..."
                   value={localData.extraInfo}
                   onChange={(e) => setLocalData(prev => ({ ...prev, extraInfo: e.target.value }))}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none text-gray-900"
+                  className="w-full px-4 py-3 border border-gray-700 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none text-[#F5F5F7] font-semibold bg-transparent"
                 />
               </div>
 
               {/* Travel Tolerance */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
                   Travel Tolerance (Optional)
                 </label>
                 <div className="flex gap-3">
@@ -230,7 +230,7 @@ export default function BasicInfoStep({ formData, onNext }) {
                       className={`flex-1 py-2 px-4 rounded-lg border-2 transition-colors capitalize ${
                         (localData.travelTolerance || []).includes(level)
                           ? 'bg-purple-600 text-white border-purple-600'
-                          : 'bg-white text-gray-700 border-gray-300 hover:border-purple-400'
+                          : 'bg-transparent text-gray-200 border-gray-600 hover:border-purple-400'
                       }`}
                     >
                       {level}

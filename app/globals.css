@@ -29,12 +29,12 @@ body {
 .form-purple input,
 .form-purple textarea,
 .form-purple select {
-  color: #a78bfa; /* tailwind purple-400 */
-  caret-color: #a78bfa;
+  color: #F5F5F7; /* pearl white */
+  caret-color: #F5F5F7;
   background-color: transparent;
 }
 
 .form-purple input::placeholder,
 .form-purple textarea::placeholder {
-  color: rgba(167,139,250,0.6);
+  color: rgba(245,245,247,0.65);
 }
