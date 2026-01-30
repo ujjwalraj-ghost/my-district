@@ -7,6 +7,7 @@ const ActivitySchema = new mongoose.Schema({
     auto: true
   },
   name: String,
+  description: String,
   location: {
     lat: Number,
     lng: Number
@@ -136,7 +137,6 @@ const ActivitySchema = new mongoose.Schema({
     enum: ["low", "medium", "high"]
   }],
 
-  tags: [String],
   parking: Boolean,
   rating: Number
 }, {

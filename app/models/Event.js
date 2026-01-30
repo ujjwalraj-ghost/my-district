@@ -7,6 +7,7 @@ const EventSchema = new mongoose.Schema({
     auto: true
   },
   name: String,
+  description: String,
   location: {
     lat: Number,
     lng: Number
@@ -145,7 +146,6 @@ const EventSchema = new mongoose.Schema({
     enum: ["indoor", "outdoor", "both"]
   }],
 
-  tags: [String],
   parking: Boolean,
   rating: Number
 }, {

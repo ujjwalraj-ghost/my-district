@@ -7,6 +7,7 @@ const DiningSchema = new mongoose.Schema({
     auto: true
   },
   name: String,
+  description: String,
   location: {
     lat: Number,
     lng: Number
@@ -36,7 +37,6 @@ const DiningSchema = new mongoose.Schema({
   cuisines: [String],
   alcohol: Boolean,
 
-  tags: [String],
   parking: Boolean,
   rating: Number
 }, {

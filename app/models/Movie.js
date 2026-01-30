@@ -7,6 +7,7 @@ const MovieSchema = new mongoose.Schema({
     auto: true
   },
   name: String,
+  description: String,
   location: {
     lat: Number,
     lng: Number
@@ -60,7 +61,6 @@ const MovieSchema = new mongoose.Schema({
     enum: ["2D", "3D", "4DX-3D", "IMAX 2D", "4DX-2D", "ICE 2D"]
   }],
 
-  tags: [String],
   cast: [String],
   parking: Boolean,
   rating: Number
