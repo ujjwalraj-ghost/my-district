@@ -14,11 +14,6 @@ function buildSystemPrompt(requestBody) {
     constraints.push(`travel tolerance: ${requestBody.travelTolerance.join(', ')} (evaluate travel times accordingly)`);
   }
   
-  // User preferences and tags
-  if (requestBody.extraInfo) {
-    constraints.push(`user preferences: "${requestBody.extraInfo}" (match with tags field)`);
-  }
-  
   // Go-out specific filters
   if (requestBody.dining) {
     const filters = [];
@@ -100,47 +95,18 @@ function buildSystemPrompt(requestBody) {
     if (filters.length) constraints.push(`movie (${filters.join('; ')})`);
   }
   
+  // User preferences and tags
+  if (requestBody.extraInfo) {
+    constraints.push(`user preferences: "${requestBody.extraInfo}" (Very important for analysis!)`);
+  }
+  
   const constraintsText = constraints.length > 0
     ? `Evaluate based on: ${constraints.join(', ')}.`
     : 'Evaluate all aspects.';
   
   return `You are a precise itinerary scoring engine. ${constraintsText}
 
-DYNAMIC WEIGHTING:
-  Analyze use preferences to determine priority. Allocate points (total = 100) across relevant criteria based on their importance to the user.
-- Budget-focused user: Allocate more weight to budget compliance (e.g., 40-50 points)
-- Travel-sensitive user: Allocate more weight to travel & logistics (e.g., 40-60 points)
-- Quality-focused user: Allocate more weight to ratings, preferences, and venue quality
-- If intent is unclear: Distribute points equally across criteria
-
-KEY EVALUATION AREAS:
-1. BUDGET: Total cost vs budget (pricePerPerson × numberOfPeople). Penalize overspending.
-
-2. TRAVEL & LOGISTICS: distanceKm, travelTimeMinutes between locations. Check travelTolerance limits, timeGapBetweenThings, and venue operating hours (availableTimeStart to availableTimeEnd).
-
-3. GO-OUT SPECIFIC FILTERS (penalize mismatches):
-   - DINING: type (veg/non-veg), cuisines, alcohol availability
-   - EVENTS: type, venue (indoor/outdoor/both)
-   - ACTIVITIES: type, venue (indoor/outdoor), intensity (low/medium/high)
-   - PLAY: type (sport), venue (indoor/outdoor), intensity (low/medium/high), cafe availability
-   - MOVIES: genre, language, format (2D/3D/IMAX), cast
-
-4. COMMON AMENITY FILTERS (penalize mismatches):
-   - wifi, washroom, wheelchair accessibility, parking availability
-   - rating (must meet minimum rating requirement)
-   - crowdTolerance (low/medium/high)
-
-5. USER PREFERENCES & QUALITY:
-   - Match extraInfo (user's free-text preferences) with venue description, tags, and overall experience quality
-   - Verify venues align with user's stated interests and requirements
-
-6. EXPERIENCE FLOW: Logical sequence, variety, balance, and duration appropriateness.
-
-SCORING RULES:
-- Use full granular range 0-100 (e.g., 67, 73, 82, 91)
-- Do NOT round to multiples of 5 or 10
-- Be precise based on constraint violations/matches
-- Penalize each violation proportionally
+Analyze the itinerary object and rate it from 0-100 based on the user's intent. For context, fields in the itinerary object such as distanceKm represent the distance from the previous location, and travelTimeMinutes represents the travel time from the previous location. Evaluate the entire itinerary based on all provided fields. The highlights are very important for scoring. Provide detailed reasoning for the score.
 
 OUTPUT FORMAT:
 Return ONLY valid JSON:
